@@ -1,0 +1,132 @@
+FUNCTIONAL REQUIREMENTS DOCUMENT (FRD)
+
+Project: Finance Dashboard Backend System
+
+1. 📌 Introduction
+1.1 Purpose
+
+This document defines the functional requirements for a backend system that manages financial data, user roles, and dashboard analytics.
+
+1.2 Objective
+
+To build a backend service that:
+
+Stores financial records
+Manages users and roles
+Provides summary analytics
+Enforces access control
+
+👉 FRD defines what the system should do, not how
+
+2. 🎯 Scope
+In Scope:
+User management (roles, status)
+Financial record CRUD operations
+Dashboard analytics APIs
+Authentication & authorization
+Input validation and error handling
+Out of Scope:
+Frontend UI
+Payment gateway integration
+External financial APIs
+3. 👥 User Roles
+Role	Description
+Viewer	Can only view dashboard data
+Analyst	Can view records and analytics
+Admin	Full access (CRUD + user management)
+4. 🧩 System Overview
+
+The system will:
+
+Accept API requests
+Process financial data
+Enforce role-based access
+Return structured responses for dashboard consumption
+5. ⚙️ Functional Requirements
+5.1 Authentication & Authorization
+The system shall allow users to register and log in
+The system shall generate authentication tokens
+The system shall support refresh token mechanism
+The system shall restrict access based on user roles
+The system shall allow logout and token invalidation
+5.2 User Management
+The system shall allow creation of users
+The system shall assign roles to users
+The system shall update user status (active/inactive)
+The system shall allow admins to view all users
+5.3 Financial Records Management
+The system shall allow creation of financial records
+The system shall allow viewing of records
+The system shall allow updating records
+The system shall allow deletion of records
+Each record shall include:
+Amount
+Type (income/expense)
+Category
+Date
+Description
+5.4 Filtering & Querying
+The system shall allow filtering records by:
+Date range
+Category
+Type
+The system shall support pagination for large datasets
+5.5 Dashboard Summary
+
+The system shall provide APIs for:
+
+Total income calculation
+Total expense calculation
+Net balance calculation
+Category-wise totals
+Recent transactions
+Monthly/weekly trends
+
+👉 Functional requirements define system behavior and operations
+
+5.6 Access Control
+Viewer:
+Can only access dashboard APIs
+Analyst:
+Can view records
+Can access analytics
+Admin:
+Full access to all APIs
+The system shall enforce access control at backend level
+5.7 Validation & Error Handling
+The system shall validate all input data
+The system shall return appropriate HTTP status codes
+The system shall prevent invalid operations
+The system shall provide meaningful error messages
+6. 🔒 Non-Functional Requirements
+Performance
+API response time should be < 500ms under normal load
+Security
+All endpoints must be secured
+Authentication tokens must be validated
+Reliability
+System should handle invalid inputs gracefully
+Scalability
+System should support increasing number of users
+7. 🔄 Assumptions
+Users will interact via API clients (Postman/frontend)
+Authentication will be token-based
+Data persistence will be handled via database
+8. ⚠️ Constraints
+Swagger documentation is mandatory
+Backend-only implementation
+Limited development time
+9. 📘 API Documentation Requirement
+All APIs must be documented using Swagger
+Each endpoint should include:
+Request schema
+Response schema
+Description
+10. 📊 Success Criteria
+
+The system will be considered successful if:
+
+All APIs function correctly
+Role-based access is enforced
+Dashboard summaries are accurate
+Code is clean and maintainable
