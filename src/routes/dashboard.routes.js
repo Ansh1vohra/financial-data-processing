@@ -11,6 +11,7 @@ const router = express.Router();
  * /api/v1/dashboard/summary:
  *   get:
  *     summary: Get dashboard summary analytics
+ *     description: Accessible to viewer, analyst, and admin roles.
  *     tags: [Dashboard]
  *     security:
  *       - bearerAuth: []

@@ -13,6 +13,7 @@ router.use(protect);
  * /api/v1/records:
  *   post:
  *     summary: Create a financial record
+ *     description: Admin only. Analysts can view records but cannot create them.
  *     tags: [Records]
  *     security:
  *       - bearerAuth: []
@@ -33,6 +34,7 @@ router.post("/", authorize(ROLES.ADMIN), recordController.createFinancialRecord)
  * /api/v1/records:
  *   get:
  *     summary: List financial records with filters and pagination
+ *     description: Accessible to admin and analyst roles.
  *     tags: [Records]
  *     security:
  *       - bearerAuth: []
@@ -79,6 +81,7 @@ router.get(
  * /api/v1/records/{recordId}:
  *   get:
  *     summary: Get a single financial record
+ *     description: Accessible to admin and analyst roles.
  *     tags: [Records]
  *     security:
  *       - bearerAuth: []
@@ -103,6 +106,7 @@ router.get(
  * /api/v1/records/{recordId}:
  *   patch:
  *     summary: Update a financial record
+ *     description: Admin only.
  *     tags: [Records]
  *     security:
  *       - bearerAuth: []
@@ -133,6 +137,7 @@ router.patch(
  * /api/v1/records/{recordId}:
  *   delete:
  *     summary: Delete a financial record
+ *     description: Admin only.
  *     tags: [Records]
  *     security:
  *       - bearerAuth: []

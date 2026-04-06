@@ -33,6 +33,8 @@ const options = {
             password: { type: "string", example: "strongpass123" },
             role: {
               type: "string",
+              description:
+                "Optional role for public registration. Allowed values are viewer or analyst. Admin must be created through the seed script.",
               enum: ["analyst", "viewer"],
               example: "analyst",
             },

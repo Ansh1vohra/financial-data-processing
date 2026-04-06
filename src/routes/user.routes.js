@@ -13,6 +13,7 @@ router.use(protect, authorize(ROLES.ADMIN));
  * /api/v1/users:
  *   get:
  *     summary: List all users
+ *     description: Admin only.
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
@@ -27,6 +28,7 @@ router.get("/", userController.getAllUsers);
  * /api/v1/users/{userId}:
  *   get:
  *     summary: Get a single user by id
+ *     description: Admin only.
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
@@ -47,6 +49,7 @@ router.get("/:userId", userController.getUser);
  * /api/v1/users/{userId}:
  *   patch:
  *     summary: Update a user's name, role, or active status
+ *     description: Admin only.
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
