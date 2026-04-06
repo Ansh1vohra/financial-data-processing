@@ -12,7 +12,6 @@ const { swaggerGenerateHtml, swaggerServeFiles } = require("./utils/swagger");
 
 const app = express();
 const swaggerHtml = swaggerGenerateHtml(swaggerSpec);
-console.log("Loaded app.js build: swagger-debug-2026-04-06");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -29,12 +28,6 @@ app.use("/api-docs", (request, response, next) => {
   }
 
   return next();
-});
-app.get("/codex-check-123", (_request, response) => {
-  response.status(200).json({
-    success: true,
-    message: "Current app.js is loaded",
-  });
 });
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);

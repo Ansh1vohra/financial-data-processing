@@ -22,4 +22,7 @@ module.exports = {
   accessTokenExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN || "15m",
   refreshTokenExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
   bcryptSaltRounds: Number(process.env.BCRYPT_SALT_ROUNDS) || 10,
+  appBaseUrl: process.env.APP_BASE_URL || `http://localhost:${Number(process.env.PORT) || 5000}`,
+  keepAliveEnabled: process.env.KEEP_ALIVE_ENABLED === "true",
+  keepAliveIntervalMs: Number(process.env.KEEP_ALIVE_INTERVAL_MS) || 540000,
 };

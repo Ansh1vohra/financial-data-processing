@@ -1,6 +1,7 @@
 const app = require("./app");
 const { connectToDatabase } = require("./config/db");
 const { port } = require("./config/env");
+const { startKeepAlive } = require("./services/keep-alive.service");
 
 const startServer = async () => {
   try {
@@ -8,6 +9,7 @@ const startServer = async () => {
 
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
+      startKeepAlive();
     });
   } catch (error) {
     console.error("Unable to start server", error.message);
