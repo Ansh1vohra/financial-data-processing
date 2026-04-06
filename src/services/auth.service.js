@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const { ROLES, roleValues } = require("../constants/roles");
 const AppError = require("../utils/app-error");
 const {
   buildAccessToken,
@@ -8,7 +9,7 @@ const {
   verifyRefreshToken,
 } = require("../utils/token");
 
-const validateAuthInput = ({ email, name, password }) => {
+const validateAuthInput = ({ email, name, password, role }) => {
   if (name !== undefined && !name.trim()) {
     throw new AppError("Name is required", 400);
   }
@@ -19,6 +20,10 @@ const validateAuthInput = ({ email, name, password }) => {
 
   if (!password || password.length < 6) {
     throw new AppError("Password must be at least 6 characters", 400);
+  }
+
+  if (role !== undefined && !roleValues.includes(role)) {
+    throw new AppError("Invalid role provided", 400);
   }
 };
 
@@ -43,8 +48,8 @@ const createAuthPayload = async (user) => {
   };
 };
 
-const registerUser = async ({ name, email, password }) => {
-  validateAuthInput({ name, email, password });
+const registerUser = async ({ name, email, password, role }) => {
+  validateAuthInput({ name, email, password, role });
 
   const existingUser = await User.findOne({ email: email.toLowerCase() });
 
@@ -52,10 +57,15 @@ const registerUser = async ({ name, email, password }) => {
     throw new AppError("Email is already registered", 409);
   }
 
+  if (role === ROLES.ADMIN) {
+    throw new AppError("Admin cannot be assigned through public registration", 403);
+  }
+
   const user = await User.create({
     name: name.trim(),
     email: email.toLowerCase(),
     password,
+    role: role || ROLES.VIEWER,
   });
 
   return createAuthPayload(user);

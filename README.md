@@ -70,6 +70,18 @@ Development mode:
 npm run dev
 ```
 
+Create or update an admin user:
+
+```env
+ADMIN_NAME=Admin User
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=strongadmin123
+```
+
+```bash
+npm run seed:admin
+```
+
 ## API Docs
 
 Swagger UI is available at:
@@ -131,5 +143,6 @@ docker run --env-file .env -p 5000:5000 finance-dashboard-backend
 ## Notes
 
 - Use strong JWT secrets outside local development.
+- Public registration accepts `role`, but only for non-admin roles. Admin users should be created with `npm run seed:admin`.
 - Refresh tokens are stored as hashes in MongoDB.
 - Swagger docs are generated from route annotations.

@@ -31,6 +31,11 @@ const options = {
             name: { type: "string", example: "Ansh Vohra" },
             email: { type: "string", example: "ansh@example.com" },
             password: { type: "string", example: "strongpass123" },
+            role: {
+              type: "string",
+              enum: ["analyst", "viewer"],
+              example: "analyst",
+            },
           },
         },
         LoginRequest: {
